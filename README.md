@@ -13,3 +13,6 @@ To run this application you must first configure the TFSIntegrationSettings.json
    "SourceFile":"The installer/filename e.g. intaller.msi",
    "MaxBuildsToKeep":5 --the max number of builds to keep based on date
 }
+
+
+You can add this applcation to Windows TaskSecheduler to run every x minutes, by doing this you have the latest build downloaded and ready to be deployed.

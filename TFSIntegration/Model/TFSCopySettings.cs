@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace TFSIntegration
 {
-    public class Settings
-    {
-        public Uri TfsUrl { get; set; }
+    public class TFSCopySettings
+    {      
         public string TeamProject { get; set; }
         public string BuildDefinitionName { get; set; }
         public string CopyTo { get; set; }

@@ -15,4 +15,4 @@ To run this application you must first configure the TFSIntegrationSettings.json
 }
 
 
-You can add this applcation to Windows TaskSecheduler to run every x minutes, by doing this you have the latest build downloaded and ready to be deployed.
+You can add this application to Windows TaskSecheduler to run every x minutes, by doing this you will have the latest build downloaded and ready to be deployed.

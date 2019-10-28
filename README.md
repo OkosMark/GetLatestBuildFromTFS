@@ -18,6 +18,6 @@ To run this application you must first configure the TFSIntegrationSettings.json
     ]
 }
 
-Before running this application you could first access the "TfsUrl" and loggin. By logging into TFS your credentials will be saved in the "Credentials Manager". By doing this you can avoid saving passwords in code or configs.
+Before running this application you could first access the "TfsUrl" and login. By logging into TFS your credentials will be saved in the "Credentials Manager". By doing this you can avoid saving passwords in code or configuration files.
 
 You can add this application to Windows TaskSecheduler to run every x minutes, by doing this you will have the latest build downloaded and ready to be deployed.

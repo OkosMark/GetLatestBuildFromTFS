@@ -217,7 +217,8 @@
     <Compile Include="Logger\Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
+    <Compile Include="Model\TFSCopySettings.cs" />
+    <Compile Include="Model\TFSConfiguration.cs" />
     <Compile Include="Utility\CredentialUtil.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -17,6 +17,7 @@ To run this application you must first configure the TFSIntegrationSettings.json
       }
     ]
 }
+
 -you can specify multiple TFSCopySettings.
 
 Before running this application you could access the "TfsUrl" and login, by logging into TFS your credentials will be saved in the "Credentials Manager". By doing this you can avoid saving credentials in code or configuration files.

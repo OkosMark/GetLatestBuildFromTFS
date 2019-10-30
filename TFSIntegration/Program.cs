@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.ServiceProcess;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.TeamFoundation.Build.Client;
@@ -11,129 +12,22 @@ using Newtonsoft.Json;
 
 namespace TFSIntegration
 {
-    class Program
+    public class Program
     {
-        /// <summary>
-        /// The configuration file
-        /// </summary>
-        private const string CONFIG_FILE = "TFSIntegrationSettings.json";
-
+        [STAThread]
         static void Main(string[] args)
         {
-            Logger.Log.Info("START");
-            Logger.Log.Info($"Application runs from this location: {System.Reflection.Assembly.GetExecutingAssembly().Location}");
-
-            Logger.Log.Info("Read configuration!");
-            TFSConfiguration tfsConfiguration = ReadTFSConfiguration(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), CONFIG_FILE));
-
-            Logger.Log.Info($"Authenticate to server {tfsConfiguration.TfsUrl}");
-            NetworkCredential credentials = CredentialUtil.GetCredential(
-                tfsConfiguration.TfsUrl.AbsoluteUri.Substring(0, tfsConfiguration.TfsUrl.AbsoluteUri.Length - tfsConfiguration.TfsUrl.AbsolutePath.Length + 1));
-            TfsTeamProjectCollection tfs = new TfsTeamProjectCollection(tfsConfiguration.TfsUrl, credentials);
-            tfs.Authenticate();
-
-
-            Logger.Log.Info("Get build server!");
-            IBuildServer buildServer = tfs.GetService<IBuildServer>();
-            Logger.Log.Info($"Build server version: {buildServer.BuildServerVersion}!");
-
-            Parallel.ForEach(tfsConfiguration.TFSSettings, (tfsIntegrationSettings) =>
-                                        {
-                                            Logger.Log.Info($"Get all build definitions from team project {tfsIntegrationSettings.TeamProject}.");
-                                            IBuildDefinition[] buildDefinitions = buildServer.QueryBuildDefinitions(tfsIntegrationSettings.TeamProject, QueryOptions.Definitions);
-
-                                            if (buildDefinitions == null || !buildDefinitions.Any())
-                                            {
-                                                Logger.Log.Info("No build definitions found! Exiting!");
-                                                return;
-                                            }
-
-                                            Logger.Log.Info($"Found {buildDefinitions.Length} build definitions.");
-                                            IBuildDefinition buildDefinition =
-                                                buildDefinitions.Where(build => build.Name == tfsIntegrationSettings.BuildDefinitionName)
-                                                    .Select(b => b)
-                                                    .FirstOrDefault();
-
-                                            Logger.Log.Info($"Get build details from {buildDefinition.Name}.");
-                                            IBuildDetail buildDetail = GetLatestBuildDetails(buildServer, buildDefinition,
-                                                tfsIntegrationSettings.TeamProject);
-
-                                            if (buildDetail != null)
-                                            {
-                                                DownloadVantageInstaller(
-                                                    Path.Combine(buildDetail.DropLocation, tfsIntegrationSettings.SourcePathFragment,
-                                                        tfsIntegrationSettings.SourceFile),
-                                                    Path.Combine(tfsIntegrationSettings.CopyTo, tfsIntegrationSettings.BuildDefinitionName,
-                                                        buildDetail.BuildNumber, tfsIntegrationSettings.SourceFile));
-                                            }
-
-                                            Logger.Log.Info("Cleanup old builds");
-                                            CleanUp(Path.Combine(tfsIntegrationSettings.CopyTo, tfsIntegrationSettings.BuildDefinitionName),
-                                                tfsIntegrationSettings.MaxBuildsToKeep);
-                                            Logger.Log.Info("FINISHED");
-                                        });          
-        }
-
-        private static IBuildDetail GetLatestBuildDetails(IBuildServer buildServer, IBuildDefinition def, string teamProjectName)
-        {
-            IBuildDetailSpec spec = buildServer.CreateBuildDetailSpec(teamProjectName, def.Name);
-            spec.MaxBuildsPerDefinition = 1;
-            spec.QueryOrder = BuildQueryOrder.FinishTimeDescending;
-            spec.Status = BuildStatus.Succeeded;
-
-            var builds = buildServer.QueryBuilds(spec);
-            return builds.Builds.FirstOrDefault();
-        }
-
-        private static void DownloadVantageInstaller(string source, string destination)
-        {
-            if (!Directory.Exists(Path.GetDirectoryName(destination)))
+            TFSIntegration tfsIntegrationService = new TFSIntegration();
+            
+            if (Environment.UserInteractive)
             {
-                Logger.Log.Info($"Create directory {Path.GetDirectoryName(destination)}");
-                Directory.CreateDirectory(Path.GetDirectoryName(destination));
+                tfsIntegrationService.RunAsConsole(args);
             }
-
-            if (File.Exists(destination))
+            else
             {
-                Logger.Log.Info($"File {source} already exists! Exiting!");
-                return;
-            }
-
-            using (WebClient webClient = new WebClient())
-            {
-                Logger.Log.Info($"Download file from {source} to {destination}");
-                webClient.DownloadFile(source, destination);
-            }
-        }       
-     
-        private static TFSConfiguration ReadTFSConfiguration(string configPath)
-        {
-            TFSConfiguration config = null;
-
-            using (StreamReader file = File.OpenText(configPath))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                config = (TFSConfiguration)serializer.Deserialize(file, typeof(TFSConfiguration));
-            }
-
-            return config;
-        }
-
-        private static void CleanUp(string pathToClean, int maxItemsToKeep)
-        {
-            DirectoryInfo directoryInfo = new DirectoryInfo(pathToClean);
-            var result = directoryInfo.GetDirectories().OrderByDescending(t => t.CreationTime).ToList();
-
-            if (!result.Any() || result.Count <= maxItemsToKeep)
-            {
-                Logger.Log.Info($"Nothing to delete! The threshold of {maxItemsToKeep} was not met.");
-                return;
-            }
-
-            for (int i = maxItemsToKeep; i < result.Count(); i++)
-            {
-                Logger.Log.Info($"Delete build {result[i].Name}");
-                result[i].Delete(true);
+                ServiceBase[] ServicesToRun;
+                ServicesToRun = new ServiceBase[] { tfsIntegrationService };
+                ServiceBase.Run(ServicesToRun);
             }
         }
     }

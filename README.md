@@ -17,7 +17,11 @@ To run this application you must first configure the TFSIntegrationSettings.json
       }
     ]
 }
+-you can specify multiple TFSCopySettings.
 
-Before running this application you could first access the "TfsUrl" and login. By logging into TFS your credentials will be saved in the "Credentials Manager". By doing this you can avoid saving credentials in code or configuration files.
+Before running this application you could access the "TfsUrl" and login, by logging into TFS your credentials will be saved in the "Credentials Manager". By doing this you can avoid saving credentials in code or configuration files.
 
-You can add this application to Windows TaskSecheduler to run every x minutes, by doing this you will have the latest build downloaded and ready to be deployed.
+You can use this application in three modes:
+-as a windows service by running InstallService.bat file that comes with the solution.
+-as a standalone application which you can add to the Windows TaskSecheduler to run every x minutes, by doing this you will have the latest build downloaded and ready to be deployed.
+-as a run on demand by executing the TFSIntegration.exe file.

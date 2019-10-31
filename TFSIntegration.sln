@@ -111,7 +111,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{46BCCE
 		Source\TFSIntegration.vshost.exe = Source\TFSIntegration.vshost.exe
 		Source\TFSIntegration.vshost.exe.config = Source\TFSIntegration.vshost.exe.config
 		Source\TFSIntegration.vshost.exe.manifest = Source\TFSIntegration.vshost.exe.manifest
-		Source\TfsIntegrationLOG.log = Source\TfsIntegrationLOG.log
 		Source\TFSIntegrationSettings.json = Source\TFSIntegrationSettings.json
 	EndProjectSection
 EndProject

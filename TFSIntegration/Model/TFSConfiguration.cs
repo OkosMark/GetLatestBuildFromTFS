@@ -10,6 +10,8 @@ namespace TFSIntegration
     {
         public Uri TfsUrl { get; set; }
 
+        public int RepetTaskEveryXSeconds { get; set; }
+
         public List<TFSCopySettings> TFSSettings { get; set; }
     }
 }

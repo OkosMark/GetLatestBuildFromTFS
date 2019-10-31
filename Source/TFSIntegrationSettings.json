@@ -1,5 +1,6 @@
 {
   "TfsUrl": "",
+  "RepetTaskEveryXSeconds": 300,
   "TFSSettings": [
     {
       "TeamProject": "",

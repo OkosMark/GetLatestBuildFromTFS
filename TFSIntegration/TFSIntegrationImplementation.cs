@@ -16,15 +16,18 @@ namespace TFSIntegration
         /// <summary>
         /// The configuration file
         /// </summary>
-        private const string CONFIG_FILE = "TFSIntegrationSettings.json";
+        public const string CONFIG_FILE = "TFSIntegrationSettings.json";
 
-        public void Run()
+        public void Run(TFSConfiguration tfsConfiguration = null)
         {
             Logger.Log.Info("START");
             Logger.Log.Info($"Application runs from this location: {System.Reflection.Assembly.GetExecutingAssembly().Location}");
 
-            Logger.Log.Info("Read configuration!");
-            TFSConfiguration tfsConfiguration = ReadTFSConfiguration(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), CONFIG_FILE));
+            if (tfsConfiguration == null)
+            {
+                Logger.Log.Info("Read configuration!");
+                tfsConfiguration = ReadTFSConfiguration(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), CONFIG_FILE));
+            }
 
             Logger.Log.Info($"Authenticate to server {tfsConfiguration.TfsUrl}");
             NetworkCredential credentials = CredentialUtil.GetCredential(
@@ -74,7 +77,7 @@ namespace TFSIntegration
             });
         }
 
-        private static IBuildDetail GetLatestBuildDetails(IBuildServer buildServer, IBuildDefinition def, string teamProjectName)
+        private IBuildDetail GetLatestBuildDetails(IBuildServer buildServer, IBuildDefinition def, string teamProjectName)
         {
             IBuildDetailSpec spec = buildServer.CreateBuildDetailSpec(teamProjectName, def.Name);
             spec.MaxBuildsPerDefinition = 1;
@@ -85,7 +88,7 @@ namespace TFSIntegration
             return builds.Builds.FirstOrDefault();
         }
 
-        private static void DownloadVantageInstaller(string source, string destination)
+        private void DownloadVantageInstaller(string source, string destination)
         {
             if (!Directory.Exists(Path.GetDirectoryName(destination)))
             {
@@ -106,7 +109,7 @@ namespace TFSIntegration
             }
         }
 
-        private static TFSConfiguration ReadTFSConfiguration(string configPath)
+        public TFSConfiguration ReadTFSConfiguration(string configPath)
         {
             TFSConfiguration config = null;
 
@@ -119,7 +122,7 @@ namespace TFSIntegration
             return config;
         }
 
-        private static void CleanUp(string pathToClean, int maxItemsToKeep)
+        private void CleanUp(string pathToClean, int maxItemsToKeep)
         {
             DirectoryInfo directoryInfo = new DirectoryInfo(pathToClean);
             var result = directoryInfo.GetDirectories().OrderByDescending(t => t.CreationTime).ToList();

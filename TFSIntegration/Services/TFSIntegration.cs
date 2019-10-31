@@ -15,6 +15,7 @@ namespace TFSIntegration
     {
         private System.Timers.Timer aTimer;
         private TFSIntegrationImplementation integrationImplementation;
+        private TFSConfiguration tfsConfiguration;
 
         public TFSIntegration()
         {
@@ -32,14 +33,23 @@ namespace TFSIntegration
             // Hook up the Elapsed event for the timer.
             aTimer.Elapsed += this.OnTimedEvent;
 
-            // Set the Interval to 5 minutes
-            aTimer.Interval = 300000;
+           
 
             Logger.Log.Info("Thread start");
             
             integrationImplementation = new TFSIntegrationImplementation();
-            Logger.Log.Info("Run integration started at: : " + DateTime.Now);
-            integrationImplementation.Run();
+            Logger.Log.Info($"Read configuration from {TFSIntegrationImplementation.CONFIG_FILE}");
+            TFSConfiguration tfsConfiguration = integrationImplementation.ReadTFSConfiguration(TFSIntegrationImplementation.CONFIG_FILE);
+            
+            // Set the Interval to 5 minutes
+            if (tfsConfiguration != null && tfsConfiguration.RepetTaskEveryXSeconds != 0)
+            {
+                aTimer.Interval = TimeSpan.FromSeconds(tfsConfiguration.RepetTaskEveryXSeconds).TotalMilliseconds;
+            }
+            else
+            {                
+                aTimer.Interval = tfsConfiguration?.RepetTaskEveryXSeconds ?? 300000;
+            }
 
             aTimer.Enabled = true;
             Logger.Log.Info("End onstart");
@@ -57,7 +67,7 @@ namespace TFSIntegration
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
             Logger.Log.Info($"The Elapsed event was raised at {e.SignalTime}. Start branch syncronization!");
-            integrationImplementation?.Run();
+            integrationImplementation?.Run(tfsConfiguration);
         }
 
         protected override void OnStop()

@@ -1,9 +1,119 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFSIntegration", "TFSIntegration\TFSIntegration.csproj", "{94023086-0C0E-4A9C-88F9-84B46495A7D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{46BCCEAA-3807-4CD0-A96B-F5A07C2AAEBD}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Ben.Demystifier.dll = Source\Ben.Demystifier.dll
+		Source\CredentialManagement.dll = Source\CredentialManagement.dll
+		Source\log4net.dll = Source\log4net.dll
+		Source\log4net.xml = Source\log4net.xml
+		Source\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll = Source\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll
+		Source\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.xml = Source\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.xml
+		Source\Microsoft.TeamFoundation.Build.Client.dll = Source\Microsoft.TeamFoundation.Build.Client.dll
+		Source\Microsoft.TeamFoundation.Build.Client.xml = Source\Microsoft.TeamFoundation.Build.Client.xml
+		Source\Microsoft.TeamFoundation.Build.Common.dll = Source\Microsoft.TeamFoundation.Build.Common.dll
+		Source\Microsoft.TeamFoundation.Build.Common.xml = Source\Microsoft.TeamFoundation.Build.Common.xml
+		Source\Microsoft.TeamFoundation.Build2.WebApi.dll = Source\Microsoft.TeamFoundation.Build2.WebApi.dll
+		Source\Microsoft.TeamFoundation.Build2.WebApi.xml = Source\Microsoft.TeamFoundation.Build2.WebApi.xml
+		Source\Microsoft.TeamFoundation.Client.dll = Source\Microsoft.TeamFoundation.Client.dll
+		Source\Microsoft.TeamFoundation.Client.xml = Source\Microsoft.TeamFoundation.Client.xml
+		Source\Microsoft.TeamFoundation.Common.dll = Source\Microsoft.TeamFoundation.Common.dll
+		Source\Microsoft.TeamFoundation.Common.xml = Source\Microsoft.TeamFoundation.Common.xml
+		Source\Microsoft.TeamFoundation.Core.WebApi.dll = Source\Microsoft.TeamFoundation.Core.WebApi.dll
+		Source\Microsoft.TeamFoundation.Core.WebApi.xml = Source\Microsoft.TeamFoundation.Core.WebApi.xml
+		Source\Microsoft.TeamFoundation.Dashboards.WebApi.dll = Source\Microsoft.TeamFoundation.Dashboards.WebApi.dll
+		Source\Microsoft.TeamFoundation.Dashboards.WebApi.xml = Source\Microsoft.TeamFoundation.Dashboards.WebApi.xml
+		Source\Microsoft.TeamFoundation.DeleteTeamProject.dll = Source\Microsoft.TeamFoundation.DeleteTeamProject.dll
+		Source\Microsoft.TeamFoundation.DeleteTeamProject.xml = Source\Microsoft.TeamFoundation.DeleteTeamProject.xml
+		Source\Microsoft.TeamFoundation.Diff.dll = Source\Microsoft.TeamFoundation.Diff.dll
+		Source\Microsoft.TeamFoundation.Diff.xml = Source\Microsoft.TeamFoundation.Diff.xml
+		Source\Microsoft.TeamFoundation.Discussion.Client.dll = Source\Microsoft.TeamFoundation.Discussion.Client.dll
+		Source\Microsoft.TeamFoundation.Discussion.Client.xml = Source\Microsoft.TeamFoundation.Discussion.Client.xml
+		Source\Microsoft.TeamFoundation.Git.Client.dll = Source\Microsoft.TeamFoundation.Git.Client.dll
+		Source\Microsoft.TeamFoundation.Git.Client.xml = Source\Microsoft.TeamFoundation.Git.Client.xml
+		Source\Microsoft.TeamFoundation.Lab.Client.dll = Source\Microsoft.TeamFoundation.Lab.Client.dll
+		Source\Microsoft.TeamFoundation.Lab.Client.xml = Source\Microsoft.TeamFoundation.Lab.Client.xml
+		Source\Microsoft.TeamFoundation.Lab.Common.dll = Source\Microsoft.TeamFoundation.Lab.Common.dll
+		Source\Microsoft.TeamFoundation.Lab.Common.xml = Source\Microsoft.TeamFoundation.Lab.Common.xml
+		Source\Microsoft.TeamFoundation.Lab.TestIntegration.Client.dll = Source\Microsoft.TeamFoundation.Lab.TestIntegration.Client.dll
+		Source\Microsoft.TeamFoundation.Lab.TestIntegration.Client.xml = Source\Microsoft.TeamFoundation.Lab.TestIntegration.Client.xml
+		Source\Microsoft.TeamFoundation.Lab.WorkflowIntegration.Client.dll = Source\Microsoft.TeamFoundation.Lab.WorkflowIntegration.Client.dll
+		Source\Microsoft.TeamFoundation.Lab.WorkflowIntegration.Client.xml = Source\Microsoft.TeamFoundation.Lab.WorkflowIntegration.Client.xml
+		Source\Microsoft.TeamFoundation.Policy.WebApi.dll = Source\Microsoft.TeamFoundation.Policy.WebApi.dll
+		Source\Microsoft.TeamFoundation.Policy.WebApi.xml = Source\Microsoft.TeamFoundation.Policy.WebApi.xml
+		Source\Microsoft.TeamFoundation.ProjectManagement.dll = Source\Microsoft.TeamFoundation.ProjectManagement.dll
+		Source\Microsoft.TeamFoundation.ProjectManagement.xml = Source\Microsoft.TeamFoundation.ProjectManagement.xml
+		Source\Microsoft.TeamFoundation.SharePointReporting.Integration.dll = Source\Microsoft.TeamFoundation.SharePointReporting.Integration.dll
+		Source\Microsoft.TeamFoundation.SharePointReporting.Integration.xml = Source\Microsoft.TeamFoundation.SharePointReporting.Integration.xml
+		Source\Microsoft.TeamFoundation.SourceControl.WebApi.dll = Source\Microsoft.TeamFoundation.SourceControl.WebApi.dll
+		Source\Microsoft.TeamFoundation.SourceControl.WebApi.xml = Source\Microsoft.TeamFoundation.SourceControl.WebApi.xml
+		Source\Microsoft.TeamFoundation.Test.WebApi.dll = Source\Microsoft.TeamFoundation.Test.WebApi.dll
+		Source\Microsoft.TeamFoundation.Test.WebApi.xml = Source\Microsoft.TeamFoundation.Test.WebApi.xml
+		Source\Microsoft.TeamFoundation.TestImpact.Client.dll = Source\Microsoft.TeamFoundation.TestImpact.Client.dll
+		Source\Microsoft.TeamFoundation.TestImpact.Client.xml = Source\Microsoft.TeamFoundation.TestImpact.Client.xml
+		Source\Microsoft.TeamFoundation.TestManagement.Client.dll = Source\Microsoft.TeamFoundation.TestManagement.Client.dll
+		Source\Microsoft.TeamFoundation.TestManagement.Client.xml = Source\Microsoft.TeamFoundation.TestManagement.Client.xml
+		Source\Microsoft.TeamFoundation.TestManagement.Common.dll = Source\Microsoft.TeamFoundation.TestManagement.Common.dll
+		Source\Microsoft.TeamFoundation.TestManagement.Common.xml = Source\Microsoft.TeamFoundation.TestManagement.Common.xml
+		Source\Microsoft.TeamFoundation.TestManagement.WebApi.dll = Source\Microsoft.TeamFoundation.TestManagement.WebApi.dll
+		Source\Microsoft.TeamFoundation.TestManagement.WebApi.xml = Source\Microsoft.TeamFoundation.TestManagement.WebApi.xml
+		Source\Microsoft.TeamFoundation.VersionControl.Client.dll = Source\Microsoft.TeamFoundation.VersionControl.Client.dll
+		Source\Microsoft.TeamFoundation.VersionControl.Client.xml = Source\Microsoft.TeamFoundation.VersionControl.Client.xml
+		Source\Microsoft.TeamFoundation.VersionControl.Common.dll = Source\Microsoft.TeamFoundation.VersionControl.Common.dll
+		Source\Microsoft.TeamFoundation.VersionControl.Common.Integration.dll = Source\Microsoft.TeamFoundation.VersionControl.Common.Integration.dll
+		Source\Microsoft.TeamFoundation.VersionControl.Common.Integration.xml = Source\Microsoft.TeamFoundation.VersionControl.Common.Integration.xml
+		Source\Microsoft.TeamFoundation.VersionControl.Common.xml = Source\Microsoft.TeamFoundation.VersionControl.Common.xml
+		Source\Microsoft.TeamFoundation.Wiki.WebApi.dll = Source\Microsoft.TeamFoundation.Wiki.WebApi.dll
+		Source\Microsoft.TeamFoundation.Wiki.WebApi.xml = Source\Microsoft.TeamFoundation.Wiki.WebApi.xml
+		Source\Microsoft.TeamFoundation.Work.WebApi.dll = Source\Microsoft.TeamFoundation.Work.WebApi.dll
+		Source\Microsoft.TeamFoundation.Work.WebApi.xml = Source\Microsoft.TeamFoundation.Work.WebApi.xml
+		Source\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll = Source\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll
+		Source\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.xml = Source\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.xml
+		Source\Microsoft.TeamFoundation.WorkItemTracking.Client.dll = Source\Microsoft.TeamFoundation.WorkItemTracking.Client.dll
+		Source\Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.dll = Source\Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.dll
+		Source\Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.xml = Source\Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.xml
+		Source\Microsoft.TeamFoundation.WorkItemTracking.Client.xml = Source\Microsoft.TeamFoundation.WorkItemTracking.Client.xml
+		Source\Microsoft.TeamFoundation.WorkItemTracking.Common.dll = Source\Microsoft.TeamFoundation.WorkItemTracking.Common.dll
+		Source\Microsoft.TeamFoundation.WorkItemTracking.Common.xml = Source\Microsoft.TeamFoundation.WorkItemTracking.Common.xml
+		Source\Microsoft.TeamFoundation.WorkItemTracking.Process.WebApi.dll = Source\Microsoft.TeamFoundation.WorkItemTracking.Process.WebApi.dll
+		Source\Microsoft.TeamFoundation.WorkItemTracking.Process.WebApi.xml = Source\Microsoft.TeamFoundation.WorkItemTracking.Process.WebApi.xml
+		Source\Microsoft.TeamFoundation.WorkItemTracking.Proxy.dll = Source\Microsoft.TeamFoundation.WorkItemTracking.Proxy.dll
+		Source\Microsoft.TeamFoundation.WorkItemTracking.Proxy.xml = Source\Microsoft.TeamFoundation.WorkItemTracking.Proxy.xml
+		Source\Microsoft.TeamFoundation.WorkItemTracking.WebApi.dll = Source\Microsoft.TeamFoundation.WorkItemTracking.WebApi.dll
+		Source\Microsoft.TeamFoundation.WorkItemTracking.WebApi.xml = Source\Microsoft.TeamFoundation.WorkItemTracking.WebApi.xml
+		Source\Microsoft.VisualStudio.Services.Client.Interactive.dll = Source\Microsoft.VisualStudio.Services.Client.Interactive.dll
+		Source\Microsoft.VisualStudio.Services.Client.Interactive.xml = Source\Microsoft.VisualStudio.Services.Client.Interactive.xml
+		Source\Microsoft.VisualStudio.Services.Common.dll = Source\Microsoft.VisualStudio.Services.Common.dll
+		Source\Microsoft.VisualStudio.Services.Common.xml = Source\Microsoft.VisualStudio.Services.Common.xml
+		Source\Microsoft.VisualStudio.Services.TestManagement.TestPlanning.WebApi.dll = Source\Microsoft.VisualStudio.Services.TestManagement.TestPlanning.WebApi.dll
+		Source\Microsoft.VisualStudio.Services.TestManagement.TestPlanning.WebApi.xml = Source\Microsoft.VisualStudio.Services.TestManagement.TestPlanning.WebApi.xml
+		Source\Microsoft.VisualStudio.Services.TestResults.WebApi.dll = Source\Microsoft.VisualStudio.Services.TestResults.WebApi.dll
+		Source\Microsoft.VisualStudio.Services.TestResults.WebApi.xml = Source\Microsoft.VisualStudio.Services.TestResults.WebApi.xml
+		Source\Microsoft.VisualStudio.Services.WebApi.dll = Source\Microsoft.VisualStudio.Services.WebApi.dll
+		Source\Microsoft.VisualStudio.Services.WebApi.xml = Source\Microsoft.VisualStudio.Services.WebApi.xml
+		Source\Microsoft.WITDataStore32.dll = Source\Microsoft.WITDataStore32.dll
+		Source\Microsoft.WITDataStore64.dll = Source\Microsoft.WITDataStore64.dll
+		Source\Newtonsoft.Json.dll = Source\Newtonsoft.Json.dll
+		Source\Newtonsoft.Json.xml = Source\Newtonsoft.Json.xml
+		Source\System.Collections.Immutable.dll = Source\System.Collections.Immutable.dll
+		Source\System.Collections.Immutable.xml = Source\System.Collections.Immutable.xml
+		Source\System.Reflection.Metadata.dll = Source\System.Reflection.Metadata.dll
+		Source\System.Reflection.Metadata.xml = Source\System.Reflection.Metadata.xml
+		Source\System.Web.Http.dll = Source\System.Web.Http.dll
+		Source\System.Web.Http.xml = Source\System.Web.Http.xml
+		Source\TFSIntegration.exe = Source\TFSIntegration.exe
+		Source\TFSIntegration.exe.config = Source\TFSIntegration.exe.config
+		Source\TFSIntegration.pdb = Source\TFSIntegration.pdb
+		Source\TFSIntegration.vshost.exe = Source\TFSIntegration.vshost.exe
+		Source\TFSIntegration.vshost.exe.config = Source\TFSIntegration.vshost.exe.config
+		Source\TFSIntegration.vshost.exe.manifest = Source\TFSIntegration.vshost.exe.manifest
+		Source\TfsIntegrationLOG.log = Source\TfsIntegrationLOG.log
+		Source\TFSIntegrationSettings.json = Source\TFSIntegrationSettings.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +128,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AEC8F440-EC87-4712-A7A1-24948A217614}
 	EndGlobalSection
 EndGlobal

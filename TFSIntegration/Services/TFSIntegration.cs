@@ -51,6 +51,7 @@ namespace TFSIntegration
                 aTimer.Interval = tfsConfiguration?.RepetTaskEveryXSeconds ?? 300000;
             }
 
+            integrationImplementation?.Run(tfsConfiguration);
             aTimer.Enabled = true;
             Logger.Log.Info("End onstart");
         }

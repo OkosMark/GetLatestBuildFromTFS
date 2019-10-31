@@ -1,20 +1,12 @@
 {
-  "TfsUrl": "http://dtutfs02.dtu.roche.com:8080/tfs/vantage",
+  "TfsUrl": "",
   "TFSSettings": [
     {
-      "TeamProject": "Vantage-2.x",
-      "BuildDefinitionName": "Dev_Daily",
-      "CopyTo": "C:\\VantageDropLocation",
-      "SourcePathFragment": "Installer\\Configuration 1\\Release 1\\DiskImages\\DISK1",
-      "SourceFile": "Vantage.exe",
-      "MaxBuildsToKeep": 5
-    },
-    {
-      "TeamProject": "Vantage-2.x",
-      "BuildDefinitionName": "Dev_Daily",
-      "CopyTo": "C:\\VantageDropLocation",
-      "SourcePathFragment": "Installer\\Configuration 1\\Release 1\\DiskImages\\DISK1",
-      "SourceFile": "Vantage.exe",
+      "TeamProject": "",
+      "BuildDefinitionName": "",
+      "CopyTo": "",
+      "SourcePathFragment": "",
+      "SourceFile": "",
       "MaxBuildsToKeep": 5
     }
   ]

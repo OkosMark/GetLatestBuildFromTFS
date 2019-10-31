@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
@@ -38,20 +39,19 @@ namespace TFSIntegration
             Logger.Log.Info("Thread start");
             
             integrationImplementation = new TFSIntegrationImplementation();
-            Logger.Log.Info($"Read configuration from {TFSIntegrationImplementation.CONFIG_FILE}");
-            TFSConfiguration tfsConfiguration = integrationImplementation.ReadTFSConfiguration(TFSIntegrationImplementation.CONFIG_FILE);
+            Logger.Log.Info($"Application runs from this location: {System.Reflection.Assembly.GetExecutingAssembly().Location}");
+            Logger.Log.Info("Read configuration");
+            TFSConfiguration tfsConfiguration = integrationImplementation.ReadTFSConfiguration(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), TFSIntegrationImplementation.CONFIG_FILE));
             
-            // Set the Interval to 5 minutes
+            // Set the Interval
             if (tfsConfiguration != null && tfsConfiguration.RepetTaskEveryXSeconds != 0)
             {
                 aTimer.Interval = TimeSpan.FromSeconds(tfsConfiguration.RepetTaskEveryXSeconds).TotalMilliseconds;
             }
             else
             {                
-                aTimer.Interval = tfsConfiguration?.RepetTaskEveryXSeconds ?? 300000;
-            }
-
-            integrationImplementation?.Run(tfsConfiguration);
+                aTimer.Interval = 300000;//5 minutes
+            }            
             aTimer.Enabled = true;
             Logger.Log.Info("End onstart");
         }

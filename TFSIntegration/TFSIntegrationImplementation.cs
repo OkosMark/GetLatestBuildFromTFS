@@ -20,12 +20,12 @@ namespace TFSIntegration
 
         public void Run(TFSConfiguration tfsConfiguration = null)
         {
-            Logger.Log.Info("START");
-            Logger.Log.Info($"Application runs from this location: {System.Reflection.Assembly.GetExecutingAssembly().Location}");
+            Logger.Log.Info("Run TFS integration");            
 
             if (tfsConfiguration == null)
             {
-                Logger.Log.Info("Read configuration!");
+                Logger.Log.Info($"Application runs from this location: {System.Reflection.Assembly.GetExecutingAssembly().Location}");
+                Logger.Log.Info("Read configuration");
                 tfsConfiguration = ReadTFSConfiguration(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), CONFIG_FILE));
             }
 

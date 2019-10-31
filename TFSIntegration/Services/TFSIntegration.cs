@@ -41,7 +41,7 @@ namespace TFSIntegration
             integrationImplementation = new TFSIntegrationImplementation();
             Logger.Log.Info($"Application runs from this location: {System.Reflection.Assembly.GetExecutingAssembly().Location}");
             Logger.Log.Info("Read configuration");
-            TFSConfiguration tfsConfiguration = integrationImplementation.ReadTFSConfiguration(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), TFSIntegrationImplementation.CONFIG_FILE));
+            tfsConfiguration = integrationImplementation.ReadTFSConfiguration(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), TFSIntegrationImplementation.CONFIG_FILE));
             
             // Set the Interval
             if (tfsConfiguration != null && tfsConfiguration.RepetTaskEveryXSeconds != 0)
@@ -51,7 +51,9 @@ namespace TFSIntegration
             else
             {                
                 aTimer.Interval = 300000;//5 minutes
-            }            
+            }
+
+            Logger.Log.Info($"Downloading will start in {aTimer.Interval} seconds!");
             aTimer.Enabled = true;
             Logger.Log.Info("End onstart");
         }

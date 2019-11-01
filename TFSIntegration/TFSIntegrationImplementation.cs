@@ -90,22 +90,37 @@ namespace TFSIntegration
 
         private void DownloadVantageInstaller(string source, string destination)
         {
-            if (!Directory.Exists(Path.GetDirectoryName(destination)))
-            {
-                Logger.Log.Info($"Create directory {Path.GetDirectoryName(destination)}");
-                Directory.CreateDirectory(Path.GetDirectoryName(destination));
-            }
+            string pathToDownload = Path.GetDirectoryName(destination) + "_Downloading";
+            string pathToFileToDownload = Path.Combine(pathToDownload, Path.GetFileName(destination));
 
             if (File.Exists(destination))
             {
-                Logger.Log.Info($"File {source} already exists! Exiting!");
+                Logger.Log.Info($"File {destination} already exists! Exiting!");
                 return;
+            }
+
+            if (File.Exists(pathToFileToDownload))
+            {
+                Logger.Log.Info($"File {pathToFileToDownload} is beeing downloaded!");
+                return;
+            }
+
+            if (!Directory.Exists(pathToDownload))
+            {
+                Logger.Log.Info($"Create directory temp directory {pathToDownload}");
+                Directory.CreateDirectory(pathToDownload);
             }
 
             using (WebClient webClient = new WebClient())
             {
                 Logger.Log.Info($"Download file from {source} to {destination}");
-                webClient.DownloadFile(source, destination);
+                webClient.DownloadFile(source, pathToFileToDownload);
+            }
+
+            if (Directory.Exists(pathToDownload))
+            {
+                Logger.Log.Info($"Rename directory from {pathToDownload} to {Path.GetDirectoryName(destination)}");
+                Directory.Move(pathToDownload, Path.GetDirectoryName(destination));
             }
         }
 

@@ -16,7 +16,7 @@ namespace TFSIntegration
         /// <summary>
         /// The configuration file
         /// </summary>
-        public const string CONFIG_FILE = "TFSIntegrationSettings.json";
+        public const string CONFIG_FILE = "Configuration\\TFSIntegrationSettings.json";
 
         public void Run(TFSConfiguration tfsConfiguration = null)
         {
@@ -83,6 +83,8 @@ namespace TFSIntegration
             spec.MaxBuildsPerDefinition = 1;
             spec.QueryOrder = BuildQueryOrder.FinishTimeDescending;
             spec.Status = BuildStatus.Succeeded;
+            spec.Reason = BuildReason.All ^ BuildReason.ValidateShelveset;
+
 
             var builds = buildServer.QueryBuilds(spec);
             return builds.Builds.FirstOrDefault();

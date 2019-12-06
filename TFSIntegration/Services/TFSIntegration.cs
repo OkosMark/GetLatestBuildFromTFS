@@ -17,6 +17,7 @@ namespace TFSIntegration
         private System.Timers.Timer aTimer;
         private TFSIntegrationImplementation integrationImplementation;
         private TFSConfiguration tfsConfiguration;
+        private static readonly object padlock = new object();
 
         public TFSIntegration()
         {
@@ -70,7 +71,10 @@ namespace TFSIntegration
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
             Logger.Log.Info($"The Elapsed event was raised at {e.SignalTime}. Start branch syncronization!");
-            integrationImplementation?.Run(tfsConfiguration);
+            lock (padlock)
+            {
+                integrationImplementation?.Run(tfsConfiguration);
+            }
         }
 
         protected override void OnStop()
